@@ -9,7 +9,7 @@ namespace ML.NET.LogisticRegression
     {
         public static void RunLR()
         {
-            Console.WriteLine("\nBegin ML.NET predict gender demo ");
+            Console.WriteLine("\nBegin ML.NET predict churn");
             MLContext mlc = new MLContext(seed: 1);
 
             // 1. load data and create data pipeline
@@ -21,8 +21,6 @@ namespace ML.NET.LogisticRegression
 
             var preview = mlc.Data.CreateEnumerable<ContactInput>(trainData, false).FirstOrDefault(c => c.ChurnBool);       
 
-            //var a = mlc.Transforms.Categorical.OneHotEncoding(new[]
-            //  { new InputOutputColumnPair("GenderCode", "GenderCode") });
             var b = mlc.Transforms.Categorical.OneHotEncoding(new[]
               { new InputOutputColumnPair("DoNotEMail", "DoNotEMail") });
             var c = mlc.Transforms.Categorical.OneHotEncoding(new[]
@@ -33,20 +31,12 @@ namespace ML.NET.LogisticRegression
               { new InputOutputColumnPair("has_last_month_transaction", "has_last_month_transaction") });
             var f = mlc.Transforms.Categorical.OneHotEncoding(new[]
               { new InputOutputColumnPair("has_last_halfyear_transaction", "has_last_halfyear_transaction") });
-            //var features = mlc.Transforms.Concatenate("Features", new[]
-            //  { "balance_norm", "credit_norm", "debet_norm",
-            //"discount_summ_norm", "quantity_norm", "summ_norm", "average_cheque_norm"});            
 
             var features = mlc.Transforms.Concatenate("Features", new[]
-              { "balance", "credit", "debet",
-            "discount_summ", "quantity", "summ", "average_cheque"});
+              { "balance", "credit", "debet", "discount_summ", "quantity", "summ", "average_cheque"});
 
             var dataPipe = features.Append(b).Append(c).Append(d).Append(e).Append(f);
-
-            //var split = mlc.Data.TrainTestSplit(trainData, testFraction: 0.8);
-            //var trainSet = mlc.Data.CreateEnumerable<ContactInput>(split.TrainSet, reuseRowObject: false);
-            //var testSet = mlc.Data.CreateEnumerable<ContactInput>(split.TestSet, reuseRowObject: false);
-
+                       
             // 2. train model
             Console.WriteLine("Creating a logistic regression model");
             var options = new LbfgsLogisticRegressionBinaryTrainer.Options()
