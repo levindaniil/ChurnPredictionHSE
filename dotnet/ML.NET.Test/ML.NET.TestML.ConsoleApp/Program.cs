@@ -3,9 +3,9 @@
 using System;
 using ML_NET_TestML.Model;
 
-namespace ML_NET_TestML.ConsoleApp
-{
-    public class Program
+namespace ML.NET.AutoML
+{ 
+    public class Model
     {
         static void Main(string[] args)
         {

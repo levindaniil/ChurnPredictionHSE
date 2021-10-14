@@ -2,7 +2,6 @@
 using Microsoft.Xrm.Sdk;
 using ML.NET.LogisticRegression;
 
-
 namespace UpdateChurnAutoML
 {
     public class PredictChurnMLNet : PluginBase

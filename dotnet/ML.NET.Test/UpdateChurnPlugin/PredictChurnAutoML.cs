@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.Xrm.Sdk;
 using ML_NET_TestML.Model;
 
@@ -64,7 +60,7 @@ namespace UpdateChurnAutoML
 
         private bool PredictChurn(ModelInput input)
         {
-            return new ML_NET_TestML.ConsoleApp.Program().PredictChurn(input);
+            return new ML.NET.AutoML.Model().PredictChurn(input);
         }
     }
 }

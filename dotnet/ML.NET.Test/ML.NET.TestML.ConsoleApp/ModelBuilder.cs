@@ -86,7 +86,7 @@ namespace ML_NET_TestML.ConsoleApp
 
         public static string GetAbsolutePath(string relativePath)
         {
-            FileInfo _dataRoot = new FileInfo(typeof(Program).Assembly.Location);
+            FileInfo _dataRoot = new FileInfo(typeof(ML.NET.AutoML.Model).Assembly.Location);
             string assemblyFolderPath = _dataRoot.Directory.FullName;
 
             string fullPath = Path.Combine(assemblyFolderPath, relativePath);
