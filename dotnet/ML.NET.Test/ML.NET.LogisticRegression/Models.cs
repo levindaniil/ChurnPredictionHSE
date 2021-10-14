@@ -2,7 +2,7 @@
 
 namespace ML.NET.LogisticRegression
 {
-    class ContactInput
+    public class ContactInput
     {
         [ColumnName("ContactId"), LoadColumn(0)]
         public string ContactId { get; set; }       
@@ -77,7 +77,7 @@ namespace ML.NET.LogisticRegression
         public bool LastHalfYearTransaction { get; set; }
     }
 
-    class ContactOuput
+    public class ContactOuput
     {
         [ColumnName("churn_bool")]
         public bool Churn { get; set; }

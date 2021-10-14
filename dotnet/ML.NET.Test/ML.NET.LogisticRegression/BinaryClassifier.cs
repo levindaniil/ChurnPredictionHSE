@@ -7,7 +7,7 @@ namespace ML.NET.LogisticRegression
 {
     public class BinaryClassifier
     {
-        public static void RunLR()
+        public PredictionEngine<ContactInput, ContactOuput> TrainLR()
         {
             Console.WriteLine("\nBegin ML.NET predict churn");
             MLContext mlc = new MLContext(seed: 1);
@@ -19,7 +19,7 @@ namespace ML.NET.LogisticRegression
             IDataView trainData = mlc.Data.LoadFromTextFile<ContactInput>
               (trainDataPath, ';', hasHeader: true);
 
-            var preview = mlc.Data.CreateEnumerable<ContactInput>(trainData, false).FirstOrDefault(c => c.ChurnBool);       
+            var preview = mlc.Data.CreateEnumerable<ContactInput>(trainData, false).FirstOrDefault(co => co.ChurnBool);
 
             var b = mlc.Transforms.Categorical.OneHotEncoding(new[]
               { new InputOutputColumnPair("DoNotEMail", "DoNotEMail") });
@@ -36,20 +36,20 @@ namespace ML.NET.LogisticRegression
               { "balance", "credit", "debet", "discount_summ", "quantity", "summ", "average_cheque"});
 
             var dataPipe = features.Append(b).Append(c).Append(d).Append(e).Append(f);
-                       
+
             // 2. train model
             Console.WriteLine("Creating a logistic regression model");
             var options = new LbfgsLogisticRegressionBinaryTrainer.Options()
-              {
-                  LabelColumnName = "churn_bool",
-                  FeatureColumnName = "Features",
-                  MaximumNumberOfIterations = 100,
-                  OptimizationTolerance = 1e-8f
-              };
+            {
+                LabelColumnName = "churn_bool",
+                FeatureColumnName = "Features",
+                MaximumNumberOfIterations = 100,
+                OptimizationTolerance = 1e-8f
+            };
 
             var trainer = mlc.BinaryClassification.Trainers.LbfgsLogisticRegression(options);
             var trainPipe = dataPipe.Append(trainer);
-            
+
             Console.WriteLine("Starting training");
             ITransformer model = trainPipe.Fit(trainData);
             Console.WriteLine("Training complete");
@@ -61,7 +61,7 @@ namespace ML.NET.LogisticRegression
             Console.WriteLine(metrics.Accuracy.ToString("F4"));
 
             // 4. use model
-            
+
             var seems_churn = new ContactInput
             {
                 DoNotEMail = true,
@@ -96,15 +96,14 @@ namespace ML.NET.LogisticRegression
 
             var pe = mlc.Model.CreatePredictionEngine<ContactInput, ContactOuput>(model);
 
-            var y_churn = pe.Predict(preview);
-            Console.WriteLine($"Possible churn:{y_churn.Churn}");
+            return pe;
+        }
 
-            var y_not_churn = pe.Predict(seems_not_churn);
-            Console.WriteLine($"Possible not churn:{y_not_churn.Churn}");
-
-            Console.WriteLine("\nEnd ML.NET demo ");
-            Console.ReadLine();
-        } // Main
+        public bool PredictChurn(PredictionEngine<ContactInput, ContactOuput> pe, ContactInput contactData)
+        {
+            var y_churn = pe.Predict(contactData);
+            return y_churn.Churn;
+        }
     } // Program
 }
 

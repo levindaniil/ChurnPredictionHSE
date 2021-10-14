@@ -5,7 +5,7 @@ using ML_NET_TestML.Model;
 
 namespace ML_NET_TestML.ConsoleApp
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {
@@ -45,6 +45,12 @@ namespace ML_NET_TestML.ConsoleApp
             Console.WriteLine($"\n\nPredicted Churn_prob: {predictionResult.Score}\n\n");
             Console.WriteLine("=============== End of process, hit any key to finish ===============");
             Console.ReadKey();
+        }
+
+        public bool PredictChurn(ModelInput contactData)
+        {
+            var predictionResult = ConsumeModel.Predict(contactData);
+            return predictionResult.Score > 0.5;
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30413.136
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.779
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ML.NET.ConsoleTest", "ML.NET.Test.Console\ML.NET.ConsoleTest.csproj", "{22F66DB5-B110-49BC-9236-A55DE72C41EE}"
 EndProject
@@ -11,7 +11,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ML.NET.TestML.Model", "ML.N
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ML.NET.TestML.ConsoleApp", "ML.NET.TestML.ConsoleApp\ML.NET.TestML.ConsoleApp.csproj", "{16888BDD-1CCC-45AB-8802-D21FAD773536}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ML.NET.LogisticRegression", "ML.NET.LogisticRegression\ML.NET.LogisticRegression.csproj", "{3F2551B3-451F-4A97-A9A9-C51F72BFAD0B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ML.NET.LogisticRegression", "ML.NET.LogisticRegression\ML.NET.LogisticRegression.csproj", "{3F2551B3-451F-4A97-A9A9-C51F72BFAD0B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChurnPredictionPackage", "ChurnPredictionPackage\ChurnPredictionPackage.csproj", "{FF7AA7E4-5464-462E-A442-5417A7D14DF1}"
+	ProjectSection(ProjectDependencies) = postProject
+		{172CB7B2-4B50-4185-B7A6-EBCF576758F8} = {172CB7B2-4B50-4185-B7A6-EBCF576758F8}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UpdateChurnPlugin", "UpdateChurnPlugin\UpdateChurnPlugin.csproj", "{172CB7B2-4B50-4185-B7A6-EBCF576758F8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,19 +38,30 @@ Global
 		{747D9877-70DC-4950-89E5-38648A3EBC56}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{747D9877-70DC-4950-89E5-38648A3EBC56}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{747D9877-70DC-4950-89E5-38648A3EBC56}.Release|Any CPU.Build.0 = Release|Any CPU
-		{16888BDD-1CCC-45AB-8802-D21FAD773536}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{16888BDD-1CCC-45AB-8802-D21FAD773536}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{16888BDD-1CCC-45AB-8802-D21FAD773536}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{16888BDD-1CCC-45AB-8802-D21FAD773536}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16888BDD-1CCC-45AB-8802-D21FAD773536}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{16888BDD-1CCC-45AB-8802-D21FAD773536}.Release|Any CPU.ActiveCfg = Release|x64
 		{3F2551B3-451F-4A97-A9A9-C51F72BFAD0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3F2551B3-451F-4A97-A9A9-C51F72BFAD0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3F2551B3-451F-4A97-A9A9-C51F72BFAD0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3F2551B3-451F-4A97-A9A9-C51F72BFAD0B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF7AA7E4-5464-462E-A442-5417A7D14DF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF7AA7E4-5464-462E-A442-5417A7D14DF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF7AA7E4-5464-462E-A442-5417A7D14DF1}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{FF7AA7E4-5464-462E-A442-5417A7D14DF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF7AA7E4-5464-462E-A442-5417A7D14DF1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF7AA7E4-5464-462E-A442-5417A7D14DF1}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{172CB7B2-4B50-4185-B7A6-EBCF576758F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{172CB7B2-4B50-4185-B7A6-EBCF576758F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{172CB7B2-4B50-4185-B7A6-EBCF576758F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{172CB7B2-4B50-4185-B7A6-EBCF576758F8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4B048989-7491-488F-85DF-078F9ED6143B}
+	EndGlobalSection
+	GlobalSection(CRMSolutionProperties) = preSolution
+		SolutionIsBoundToCRM = True
 	EndGlobalSection
 EndGlobal

@@ -8,7 +8,8 @@ namespace ML.NET.ConsoleTest
         static void Main(string[] args)
         {
             Console.WriteLine("Test");
-            BinaryClassifier.RunLR();
+            var bc = BinaryClassifier.TrainLR();
+            bc.Predict(new ContactInput());
             Console.ReadLine();
         }
     }
